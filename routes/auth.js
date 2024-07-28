@@ -60,6 +60,7 @@ router.post("/login",[
   body('password','Password can not be blank').exists(),
 ],async(req,res)=>{
   const errors = validationResult(req);
+  let success = false;
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -81,8 +82,9 @@ router.post("/login",[
     }
 
     const authtoken = jwt.sign(data,JWT_secret);
-    console.log(authtoken);
-    res.json({authtoken});
+    const name = user.name;
+    success = true;
+    res.json({success,authtoken,name});
 
   } catch (error) {
     console.log(error);

@@ -47,9 +47,8 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
   if (description) {
     newNote.description = description
   }
-  if (tag) {
-    newNote.tag = tag
-  }
+  newNote.tag = tag;
+  
   try {
     // find note
     let note =await Notes.findById(req.params.id);
@@ -81,7 +80,6 @@ router.delete("/delete/:id", fetchuser, async (req, res) => {
         return res.status(401).send("not allowed");
       }
       note = await Notes.findByIdAndDelete(req.params.id)
-      console.log(note);
       res.json("successfully deleted " +note );
     } catch (error) {
       console.log(error);
