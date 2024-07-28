@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middelware/fetchuser');
 
-const JWT_secret ="Rishabh&inotebook";
+const JWT_secret =process.env.JWT;
 
 router.post(
   "/signup",
